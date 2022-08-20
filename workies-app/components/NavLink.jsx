@@ -1,24 +1,21 @@
 import {
     Link,
     HStack,
-    useColorModeValue,
     Menu,
     MenuButton,
     MenuList,
     MenuItem,
-    MenuDivider,
     Button,
     Box,
     Flex,
     useDisclosure,
-    textDecoration,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, ChevronUpIcon, Search2Icon } from "@chakra-ui/icons";
+import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 
 const Links = [
     { name: "Home", path: "/" },
-    { name: "HR", path: "/"},
+    { name: "HR", path: "/" },
     { name: "Employee", path: "/employee" }
 ];
 

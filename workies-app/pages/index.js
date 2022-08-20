@@ -1,8 +1,4 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import SelectWalletModal from "../components/WalletConnectModal";
-
+import styles from '../styles/Home.module.css'
 import { Box, Flex, Img, Text } from "@chakra-ui/react";
 
 export default function Home() {

@@ -16,6 +16,7 @@ import { Tooltip } from "@chakra-ui/react";
 import { networkParams } from "../components/networks";
 import { connectors } from "../components/connectors";
 import { toHex, truncateAddress } from "../components/utils";
+import MainNavigation from "../components/MainNavigation";
 
 export default function Home() {
     const { isOpen, onOpen, onClose } = useDisclosure();

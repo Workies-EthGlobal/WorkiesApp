@@ -7,26 +7,17 @@ import {
     Button,
     Menu,
     MenuButton,
-    MenuList,
-    MenuItem,
-    MenuDivider,
     useDisclosure,
     useColorModeValue,
     Stack,
-    Img,
     Text,
     Avatar,
 } from "@chakra-ui/react";
 import NavLink from "./NavLink";
 import NextLink from "next/link";
 import { HamburgerIcon, CloseIcon, Search2Icon } from "@chakra-ui/icons";
-import SelectWalletModal from "../components/WalletConnectModal";
-import { useWeb3React } from "@web3-react/core";
-import { CheckCircleIcon, WarningIcon } from "@chakra-ui/icons";
-import { Tooltip } from "@chakra-ui/react";
-import { networkParams } from "../components/networks";
-import { connectors } from "../components/connectors";
-import { toHex, truncateAddress } from "../components/utils";
+
+import WCMenuList from "./web3/WCMenuList";
 
 export default function MainNavigation() {
     return (
@@ -71,17 +62,24 @@ export default function MainNavigation() {
                                 }
                             />
                         </MenuButton>
-                        <MenuList>
-                            <MenuItem>
-                                <HStack></HStack>
-                            </MenuItem>
-                            <MenuItem>Link 2</MenuItem>
-                            <MenuDivider />
-                            <MenuItem>Link 3</MenuItem>
-                        </MenuList>
+
+                        <WCMenuList />
+
                     </Menu>
                 </Flex>
             </Flex>
-        </Box>
+
+            {
+                isOpen ? (
+                    <Box pb={4} display={{ md: "none" }}>
+                        <Stack as={"nav"} spacing={4}>
+                            {/* {Links.map((link) => (
+                <NavLink key={link}>{link}</NavLink>
+              ))} */}
+                        </Stack>
+                    </Box>
+                ) : null
+            }
+        </Box >
     );
 }

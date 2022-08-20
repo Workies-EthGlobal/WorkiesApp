@@ -32,30 +32,23 @@ export default function EmployeeListView() {
         <Flex>
             <Box align="center">
                 <Heading>Active Lenders</Heading>
-                <Box overflowY="auto" maxHeight="300px">
+                <Box overflowY="auto" maxHeight="300px" border={'dashed'}>
 
                     <Table variant="striped" colorScheme="telegram">
                         <Thead position="sticky" top={0} bgColor="grey">
                             <Tr>
-                                <Th>First Name</Th>
-                                <Th>Last Name</Th>
+                                <Th>Loan</Th>
+                                <Th>Amount Paid</Th>
+                                <Th>Due Date</Th>
                             </Tr>
                         </Thead>
                         <Tbody>
-                            {dummyData.map(({ first_name, last_name }) => (
-                                <Tr>
-                                    <Td>{first_name}</Td>
-                                    <Td>{last_name}</Td>
-                                </Tr>
+                            {dummyData.map((lender) => (
+                                <EmplListItem lender={lender}/>
                             ))}
                         </Tbody>
                     </Table>
                 </Box>
-
-                <VStack>
-                    dummyData.map(
-                    <EmplListItem />)
-                </VStack>
             </Box>
         </Flex>
     );

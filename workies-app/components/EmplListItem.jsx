@@ -1,8 +1,12 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Td, Tr } from "@chakra-ui/react";
 
-export default function EmplListItem(){
+export default function EmplListItem(props){
     return(
 
-        <Box>This is a list item</Box>
+        <Tr>
+            <Td>{props.lender.loan}</Td>
+            <Td>{props.lender.loan}</Td>
+            <Td>{props.lender.loan}</Td>
+        </Tr>
     )
 }

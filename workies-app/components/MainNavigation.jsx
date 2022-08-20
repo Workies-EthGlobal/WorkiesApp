@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
     Box,
     Flex,
@@ -19,10 +20,15 @@ import {
 import NavLink from "./NavLink";
 import NextLink from "next/link";
 import { HamburgerIcon, CloseIcon, Search2Icon } from "@chakra-ui/icons";
+import SelectWalletModal from "../components/WalletConnectModal";
+import { useWeb3React } from "@web3-react/core";
+import { CheckCircleIcon, WarningIcon } from "@chakra-ui/icons";
+import { Tooltip } from "@chakra-ui/react";
+import { networkParams } from "../components/networks";
+import { connectors } from "../components/connectors";
+import { toHex, truncateAddress } from "../components/utils";
 
 export default function MainNavigation() {
-    const { isOpen, onOpen, onClose } = useDisclosure();
-
     return (
         <Box
             bg={useColorModeValue("rgba(12,10,29,1.0)", "blue.900")}
@@ -36,18 +42,14 @@ export default function MainNavigation() {
             opacity={0.95}
         >
             <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-                <IconButton
-                    size={"md"}
-                    icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-                    aria-label={"Open Menu"}
-                    display={{ md: "none" }}
-                    onClick={isOpen ? onClose : onOpen}
-                />
-
                 <HStack spacing={8} alignItems={"center"}>
                     <NextLink href="/">
-                        {/* <Img cursor={"pointer"} src="assets/Icons/graphIcon.svg" /> */}
-                        <Text>Workies</Text>
+                        <Img
+                            boxSize="100px"
+                            objectFit="contain"
+                            src="/assets/logo1.png"
+                            alt="Workies"
+                        />
                     </NextLink>
 
                     <NavLink />
@@ -70,7 +72,9 @@ export default function MainNavigation() {
                             />
                         </MenuButton>
                         <MenuList>
-                            <MenuItem>Connect Wallet</MenuItem>
+                            <MenuItem>
+                                <HStack></HStack>
+                            </MenuItem>
                             <MenuItem>Link 2</MenuItem>
                             <MenuDivider />
                             <MenuItem>Link 3</MenuItem>
@@ -78,16 +82,6 @@ export default function MainNavigation() {
                     </Menu>
                 </Flex>
             </Flex>
-
-            {isOpen ? (
-                <Box pb={4} display={{ md: "none" }}>
-                    <Stack as={"nav"} spacing={4}>
-                        {/* {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))} */}
-                    </Stack>
-                </Box>
-            ) : null}
         </Box>
     );
 }

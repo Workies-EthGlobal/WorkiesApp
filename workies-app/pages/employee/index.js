@@ -1,6 +1,7 @@
-import { Box, Text, VStack, Flex } from "@chakra-ui/react";
+import { Box, Text, VStack, Flex, HStack } from "@chakra-ui/react";
 
-import EmployeeListView from "../../components/EmployeeListView";
+import EmployeeListView from "../../components/employee/EmployeeListView";
+import EmplDeployForm from "../../components/employee/EmplDeployForm";
 
 export default function employee() {
     return (
@@ -12,7 +13,10 @@ export default function employee() {
                 </VStack>
             </Flex>
 
-            <EmployeeListView />
+            <HStack>
+                <EmplDeployForm/>
+                <EmployeeListView />
+            </HStack>
         </VStack>
     );
 }

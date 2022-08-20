@@ -32,14 +32,14 @@ export default function EmployeeListView() {
         <Flex>
             <Box align="center">
                 <Heading>Active Lenders</Heading>
-                <Box overflowY="auto" maxHeight="300px" border={'dashed'}>
+                <Box overflowY="auto" maxHeight="300px">
 
-                    <Table variant="striped" colorScheme="telegram">
+                    <Table variant="striped" colorScheme="facebook">
                         <Thead position="sticky" top={0} bgColor="grey">
                             <Tr>
-                                <Th>Loan</Th>
-                                <Th>Amount Paid</Th>
-                                <Th>Due Date</Th>
+                                <Th color={"blackAlpha.900"}>Loan</Th>
+                                <Th color={"blackAlpha.900"}>Amount Paid</Th>
+                                <Th color={"blackAlpha.900"}>Due Date</Th>
                             </Tr>
                         </Thead>
                         <Tbody>

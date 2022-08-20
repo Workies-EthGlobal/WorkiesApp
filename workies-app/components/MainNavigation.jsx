@@ -22,6 +22,7 @@ import { HamburgerIcon, CloseIcon, Search2Icon } from "@chakra-ui/icons";
 
 export default function MainNavigation() {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const { isModalOpen, onModalOpen, onModalClose } = useDisclosure();
 
     return (
         <Box
@@ -57,6 +58,7 @@ export default function MainNavigation() {
                     <Menu>
                         <MenuButton
                             as={Button}
+                            onClick={onModalOpen}
                             rounded={"full"}
                             variant={"link"}
                             cursor={"pointer"}
@@ -88,6 +90,11 @@ export default function MainNavigation() {
                     </Stack>
                 </Box>
             ) : null}
+
+            {/* {isModalOpen ? (
+                <WalletConnectModal/>
+            ) : Null} */}
+
         </Box>
     );
 }

@@ -3,6 +3,8 @@ import "../styles/globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import MainNavigation from '../components/MainNavigation'
 
+
+
 function MyApp({ Component, pageProps }) {
     return (
         <ChakraProvider>

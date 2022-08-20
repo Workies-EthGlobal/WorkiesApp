@@ -6,19 +6,16 @@ import {
     Button,
     Menu,
     MenuButton,
-    MenuList,
-    MenuItem,
-    MenuDivider,
     useDisclosure,
     useColorModeValue,
     Stack,
-    Img,
     Text,
     Avatar,
 } from "@chakra-ui/react";
 import NavLink from "./NavLink";
 import NextLink from "next/link";
 import { HamburgerIcon, CloseIcon, Search2Icon } from "@chakra-ui/icons";
+import WCMenuList from "./web3/WCMenuList";
 
 export default function MainNavigation() {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -69,25 +66,23 @@ export default function MainNavigation() {
                                 }
                             />
                         </MenuButton>
-                        <MenuList>
-                            <MenuItem>Connect Wallet</MenuItem>
-                            <MenuItem>Link 2</MenuItem>
-                            <MenuDivider />
-                            <MenuItem>Link 3</MenuItem>
-                        </MenuList>
+                        <WCMenuList />
+
                     </Menu>
                 </Flex>
             </Flex>
 
-            {isOpen ? (
-                <Box pb={4} display={{ md: "none" }}>
-                    <Stack as={"nav"} spacing={4}>
-                        {/* {Links.map((link) => (
+            {
+                isOpen ? (
+                    <Box pb={4} display={{ md: "none" }}>
+                        <Stack as={"nav"} spacing={4}>
+                            {/* {Links.map((link) => (
                 <NavLink key={link}>{link}</NavLink>
               ))} */}
-                    </Stack>
-                </Box>
-            ) : null}
-        </Box>
+                        </Stack>
+                    </Box>
+                ) : null
+            }
+        </Box >
     );
 }

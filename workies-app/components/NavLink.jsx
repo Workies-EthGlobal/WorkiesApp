@@ -17,9 +17,9 @@ import { ChevronDownIcon, ChevronUpIcon, Search2Icon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 
 const Links = [
-    { name: "Home", path: "/dashboard" },
+    { name: "Home", path: "/" },
     { name: "HR", path: "/"},
-    { name: "Employee", path: "/" }
+    { name: "Employee", path: "/employee" }
 ];
 
 export default function NavLink() {

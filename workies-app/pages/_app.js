@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 
 import { ChakraProvider } from "@chakra-ui/react";
+import MainNavigation from '../components/MainNavigation'
 
 function MyApp({ Component, pageProps }) {
     return (
@@ -10,6 +11,7 @@ function MyApp({ Component, pageProps }) {
                 <meta name="Workies" content="Workies" />
                 <link rel="icon" href="/favicon.ico" />
             </header>
+            <MainNavigation/>
             <Component {...pageProps} />
         </ChakraProvider>
     );

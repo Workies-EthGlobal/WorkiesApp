@@ -1,15 +1,19 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import SelectWalletModal from '../components/WalletConnectModal'
 
-import {Box, Text} from '@chakra-ui/react'
+
+import { Box, Text } from '@chakra-ui/react'
 
 export default function Home() {
   return (
     <Box>
 
+
       <main className={styles.main}>
-      
+
+
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
             <h2>Documentation &rarr;</h2>
@@ -42,8 +46,8 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-          Powered by{' '}
-          <Text>Workies</Text>
+        Powered by{' '}
+        <Text>Workies</Text>
       </footer>
     </Box>
   )

@@ -70,7 +70,7 @@ export default function MainNavigation() {
                             />
                         </MenuButton>
                         <MenuList>
-                            <MenuItem>Link 1</MenuItem>
+                            <MenuItem>Connect Wallet</MenuItem>
                             <MenuItem>Link 2</MenuItem>
                             <MenuDivider />
                             <MenuItem>Link 3</MenuItem>

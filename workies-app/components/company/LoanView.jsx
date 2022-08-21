@@ -1,6 +1,6 @@
 
 import { Box, Container, Heading, Table, Thead, Tr, Th, Tbody } from "@chakra-ui/react";
-import CompListItem  from "../employee/companyListitem";
+import CompListItem  from "../company/companyListitem";
 
 export function LoanView(props){
 

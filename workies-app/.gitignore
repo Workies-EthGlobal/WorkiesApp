@@ -9,7 +9,6 @@
 /coverage
 
 #hardhat
-/artifacts
 /cache
 
 # next.js

@@ -17,6 +17,8 @@ contract CompanayManager is PaymentManager, ISoulboundNFT, Context, Ownable, Tex
     
     // Token name
     string private _name;
+
+    uint private _ownerCount;
     
     // Token symbol
     string private _symbol;
@@ -45,6 +47,14 @@ contract CompanayManager is PaymentManager, ISoulboundNFT, Context, Ownable, Tex
         return owner;
     }
 
+    function getOwners() public view returns (address[] memory){
+        address[] memory ret = new address[](_ownerCount);
+    for (uint i = 0; i < _ownerCount; i++) {
+        ret[i] = _owners[i];
+    }
+    return ret;
+    }
+
     /**
      * @dev See {ISoulboundNFTMetadata-name}.
      */
@@ -67,7 +77,7 @@ contract CompanayManager is PaymentManager, ISoulboundNFT, Context, Ownable, Tex
      *
      * - `tokenId` must exist.
      */
-    function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal virtual onlyOwner {
+    function setTokenURI(uint256 tokenId, string memory _tokenURI) public virtual onlyOwner {
         require(_exists(tokenId), "ERC721URIStorage: URI set of nonexistent token");
         _tokenURIs[tokenId] = _tokenURI;
     }
@@ -143,6 +153,8 @@ contract CompanayManager is PaymentManager, ISoulboundNFT, Context, Ownable, Tex
         _beforeTokenTransfer(address(0), to, tokenId);
 
         _owners[tokenId] = to;
+
+        _ownerCount++;
 
         emit Transfer(address(0), to, tokenId);
 

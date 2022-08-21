@@ -16,7 +16,9 @@ export default function employee() {
 
     useEffect(() => {
         updateActiveLoans();
+        setActiveLoans(activeLoans)
     }, [active ]);
+
 
     async function updateActiveLoans() {
         console.log("updating active loans");
@@ -42,10 +44,7 @@ export default function employee() {
                 const tmp = await loanContract.functions.borrower();
 
                 const loanOp = await loanContract.functions.loanOpen();
-                    
-                setActiveLoans([...activeLoans, loanContract]);
-                    
-                console.log(activeLoans);
+                setActiveLoans(current => [...current, loanContract])
             }
             console.log("all loans loaded");
             console.log(activeLoans);

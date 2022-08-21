@@ -17,6 +17,8 @@ contract CompanayManager is PaymentManager, ISoulboundNFT, Context, Ownable, Tex
     
     // Token name
     string private _name;
+
+    uint private _ownerCount;
     
     // Token symbol
     string private _symbol;
@@ -43,6 +45,14 @@ contract CompanayManager is PaymentManager, ISoulboundNFT, Context, Ownable, Tex
         address owner = _owners[tokenId];
         require(owner != address(0), "SoulboundNFT: owner query for nonexistent token");
         return owner;
+    }
+
+    function getOwners() public view returns (address[] memory){
+        address[] memory ret = new address[](_ownerCount);
+    for (uint i = 0; i < _ownerCount; i++) {
+        ret[i] = _owners[i];
+    }
+    return ret;
     }
 
     /**
@@ -143,6 +153,8 @@ contract CompanayManager is PaymentManager, ISoulboundNFT, Context, Ownable, Tex
         _beforeTokenTransfer(address(0), to, tokenId);
 
         _owners[tokenId] = to;
+
+        _ownerCount++;
 
         emit Transfer(address(0), to, tokenId);
 

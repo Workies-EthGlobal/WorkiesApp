@@ -67,7 +67,7 @@ contract CompanayManager is PaymentManager, ISoulboundNFT, Context, Ownable, Tex
      *
      * - `tokenId` must exist.
      */
-    function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal virtual onlyOwner {
+    function setTokenURI(uint256 tokenId, string memory _tokenURI) public virtual onlyOwner {
         require(_exists(tokenId), "ERC721URIStorage: URI set of nonexistent token");
         _tokenURIs[tokenId] = _tokenURI;
     }

@@ -15,7 +15,7 @@ import NextLink from "next/link";
 
 const Links = [
     { name: "Home", path: "/" },
-    { name: "HR", path: "/" },
+    { name: "Company", path: "/company" },
     { name: "Employee", path: "/employee" }
 ];
 

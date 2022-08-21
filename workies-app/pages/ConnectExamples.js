@@ -9,13 +9,13 @@ import {
     Input,
     Box
 } from "@chakra-ui/react";
-import SelectWalletModal from "../components/WalletConnectModal";
+import SelectWalletModal from "../components/web3/WalletConnectModal";
 import { useWeb3React } from "@web3-react/core";
 import { CheckCircleIcon, WarningIcon } from "@chakra-ui/icons";
 import { Tooltip } from "@chakra-ui/react";
-import { networkParams } from "../components/networks";
-import { connectors } from "../components/connectors";
-import { toHex, truncateAddress } from "../components/utils";
+import { networkParams } from "../components/web3/networks";
+import { connectors } from "../components/web3/connectors";
+import { toHex, truncateAddress } from "../components/web3/utils";
 import MainNavigation from "../components/MainNavigation";
 
 export default function Home() {

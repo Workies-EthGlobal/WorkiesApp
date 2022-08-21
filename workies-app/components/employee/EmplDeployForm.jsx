@@ -16,46 +16,84 @@ import {
     Heading,
 } from "@chakra-ui/react";
 import CompanyManagerFactory from "../../pages/abis/CompanyManagerFactory.json";
+import LoanFactory from "../../pages/abis/CompanyManagerFactory.json";
 import { useWeb3React } from "@web3-react/core";
-import { ethers } from "ethers";
-import { Contract } from "ethers";
+import { Framework } from "@superfluid-finance/sdk-core";
+import { Contract, ethers } from "ethers";
 
 export default function EmplDeployForm() {
     const [borrowAmount, setBorrowAmount] = useState("");
     const [dInterestRate, setdInterestRate] = useState("");
     const [loanDuration, setLoanDuration] = useState("");
-    const employerAddress = "";
     const employeeAddress = ""; //Get from web3 context
     const tokenToBorrow = "";
     const superFluidHostAddress = "";
-    const smartContractAddress = "0xb7713c47b22fdac7569eb9095955c6ad3b71879a";
+    const smartContractAddress = "0xA124387236E773435fa0f5F6FF2d54E3053D4c50";
 
-    const { library, account, active } = useWeb3React();
+    const { library, account, active, chainId, connector } = useWeb3React();
 
     var contract = active
         ? new Contract(
               smartContractAddress,
-              CompanyManagerFactory.abi,
+              LoanFactory.abi,
               library.getSigner(account)
           )
         : "";
 
+    async function test() {
+        console.log(chainId);
+
+        // const prov = new ethers.providers.Web3Provider(window.ethereum);
+        const deployer  = library.getSigner(account);
+        const etherProv = deployer.provider;
+        // const prov = ethers.providers.InfuraProvider("mumbai", "https://polygon-mumbai.infura.io/v3/786671decfea4241a9e3c811abcdf3fe");
+        
+        const custm = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.infura.io/v3/786671decfea4241a9e3c811abcdf3fe");
+
+        console.log("bef");
+        // console.log(prov);
+
+        const sf = await Framework.create({
+            chainId: 80001,
+            provider: custm
+        });
+
+        console.log(sf);
+        console.log("aft");
+    }
+
     const callContract = (event) => {
         event.preventDefault();
+        test();
 
-        //Todo: call smart contract
-        console.log("entered function");
-        console.log(account);
         if (contract != "") {
-            console.log("called contract");
-            console.log(contract);
             // contract.functions.createCompanyManagerContract("Workies", "WRK");
-
-            contract.functions
-                .getCompanyManagerContract(0)
-                .then((result) => {
-                    console.log(result);
-                });
+            // contract.functions
+            //     .getCompanyManagerContract(0)
+            //     .then((result) => {
+            //         console.log(result);
+            //     });
+            //const provider = ethers.getDefaultProvider();
+            // Framework.create({
+            //     chainId: chainId,
+            //     provider: library.provider,
+            // }).then((sf) => {
+            //     sf.loadSuperToken("fDAIx").then((daix) => {
+            //         contract.functions
+            //             .createNewLoan(
+            //                 ethers.utils.parseEther(borrowAmount),
+            //                 dInterestRate,
+            //                 loanDuration,
+            //                 "0xF3Bdd4Af08a606895A4bfF479A1aF0fb6E59BA04", //employer address
+            //                 account,
+            //                 daix.address,
+            //                 sf.settings.config.hostAddress
+            //             )
+            //             .then((result) => {
+            //                 console.log(result);
+            //             });
+            //     });
+            // });
         }
     };
 

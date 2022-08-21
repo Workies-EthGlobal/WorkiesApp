@@ -52,10 +52,9 @@ export default function RegisterCompany() {
                             Register your company
                         </Heading>
                         <FormControl id="userName">
-                            <FormLabel>Company Logo</FormLabel>
                             <Stack direction={['column', 'row']} spacing={6}>
                                 <Center>
-                                    <Avatar size="xl" src="https://bit.ly/sage-adebayo">
+                                    <Avatar size="xl" src="./assets/favicon.ico">
                                         <AvatarBadge
                                             as={IconButton}
                                             size="sm"
@@ -66,9 +65,6 @@ export default function RegisterCompany() {
                                             icon={<SmallCloseIcon />}
                                         />
                                     </Avatar>
-                                </Center>
-                                <Center w="full">
-                                    <Button w="full">Change Logo</Button>
                                 </Center>
                             </Stack>
                         </FormControl>

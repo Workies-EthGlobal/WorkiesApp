@@ -60,7 +60,7 @@ export default function RegisterEmployee() {
                                 <FormLabel>Employee photo</FormLabel>
                                 <Stack direction={['column', 'row']} spacing={6}>
                                     <Center>
-                                        <Avatar size="xl" src="https://bit.ly/sage-adebayo">
+                                        <Avatar size="xl" src="/assets/favicon.ico">
                                             <AvatarBadge
                                                 as={IconButton}
                                                 size="sm"

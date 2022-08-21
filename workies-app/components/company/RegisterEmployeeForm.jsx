@@ -21,10 +21,16 @@ import { createEmployee } from "../web3/companyActions";
 import { Contract } from "ethers";
 const smartContractAddress = "0xad0448749ac74ad9c3f873abee181c7080dca09f";
 import CompanyManager from "../../pages/abis/CompanyManager.json";
+import process from 'process'
+import minimist from 'minimist'
+import { Web3Storage, getFilesFromPath } from 'web3.storage'
 
 
 export default function RegisterEmployee() {
 
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDBhYjExN2Q4OWY5ZkUwQmNlQTM0MTE3OTUwQ0ViY0FDRDkwZDNCMTQiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjEwNzc0NDI3MzIsIm5hbWUiOiJ3b3JraWVzIn0.__A81OQfyL7wVKkjioWmopGWC3UsySsS36DUdLZ3yCI"
+
+    const [selectedImage, setSelectedImage] = useState("");
     const [employeeName, setEmployeeName] = useState("");
     const [employeeSalary, setEmployeeSalary] = useState("");
     const { library, account, active } = useWeb3React();
@@ -37,10 +43,32 @@ export default function RegisterEmployee() {
         )
         : "";
 
+
     const handleSubmit = event => {
         event.preventDefault();
         console.log(employeeName, employeeSalary);
         createEmployee(contract, account, employeeName, employeeSalary);
+
+
+        if (selectedImage != "") {
+            const userInfo = {
+                "employeeName": employeeName,
+                "employeeSalary": employeeSalary
+            }
+
+
+            const storage = new Web3Storage({ token })
+            const files = []
+            var userFile = JSON.stringify(userInfo);
+            files.push(selectedImage)
+            var fileType = new File([userFile], "userInfo.json", { type: "text/json" });
+            files.push(fileType)
+            console.log(`Uploading files`)
+            storage.put(files).then(console.log((cid) => { "content added with CID: ", cid }))
+        }
+
+
+
 
     };
 
@@ -72,20 +100,42 @@ export default function RegisterEmployee() {
                                 <FormLabel>Employee photo</FormLabel>
                                 <Stack direction={['column', 'row']} spacing={6}>
                                     <Center>
-                                        <Avatar size="xl" src="/assets/favicon.ico">
-                                            <AvatarBadge
-                                                as={IconButton}
-                                                size="sm"
-                                                rounded="full"
-                                                top="-10px"
-                                                colorScheme="red"
-                                                aria-label="remove Image"
-                                                icon={<SmallCloseIcon />}
-                                            />
-                                        </Avatar>
+                                        {selectedImage ?
+                                            (
+                                                <Avatar size="xl" src={URL.createObjectURL(selectedImage)}>
+                                                    <AvatarBadge
+                                                        as={IconButton}
+                                                        size="sm"
+                                                        rounded="full"
+                                                        top="-10px"
+                                                        colorScheme="red"
+                                                        aria-label="remove Image"
+                                                        icon={<SmallCloseIcon onClick={() => setSelectedImage(null)} />}
+                                                    />
+                                                </Avatar>
+                                            ) : (
+                                                <Avatar size="xl" src={"../../public/assets/favicon.ico"} >
+                                                    <AvatarBadge
+                                                        as={IconButton}
+                                                        size="sm"
+                                                        rounded="full"
+                                                        top="-10px"
+                                                        colorScheme="red"
+                                                        aria-label="remove Image"
+                                                        icon={<SmallCloseIcon onClick={() => setSelectedImage(null)} />}
+                                                    />
+                                                </Avatar>
+                                            )
+                                        }
+
                                     </Center>
                                     <Center w="full">
-                                        <Button w="full">Change Photo</Button>
+                                        <Input type="file"
+                                            name="myImage"
+                                            onChange={(event) => {
+                                                console.log(event.target.files[0]);
+                                                setSelectedImage(event.target.files[0]);
+                                            }} />
                                     </Center>
                                 </Stack>
                             </FormControl>
@@ -130,7 +180,7 @@ export default function RegisterEmployee() {
                         </Stack>
                     }
                 </Stack>
-            </Flex>
-        </form>
+            </Flex >
+        </form >
     );
 }

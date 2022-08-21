@@ -9,39 +9,11 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
-import { useState } from "react";
-import { getNFTSmartContractAddress, getEmployeeList } from "../web3/companyActions";
-import { useWeb3React } from "@web3-react/core";
-import CompanyManagerFactory from "../../artifacts/contracts/CompanyManagerFactory.sol/CompanyManagerFactory.json";
-import { Contract } from "ethers";
-import { Web3Storage } from 'web3.storage';
+import UploadAndDisplayImage from './UploadAndDisplayImage';
 
 
 export default function EmployeeCards() {
-    const [employeeList, setEmployeeList] = useState([]);
 
-    const smartContractAddress = "0xad0448749ac74ad9c3f873abee181c7080dca09f";
-
-    const { account, active, library } = useWeb3React();
-
-    var factoryContract = active
-        ? new Contract(
-            smartContractAddress,
-            CompanyManagerFactory.abi,
-            library.getSigner(account)
-        )
-        : "";
-
-
-    const handleConnect = (event) => {
-        event.preventDefault();
-        console.log(factoryContract, account);
-        getNFTSmartContractAddress(factoryContract, account).then((address) => {
-            getEmployeeList(employerContract, address).then((employeeList) => setEmployeeList(employeeList));
-        })
-        console.log(NFTContractAddress);
-
-    }
     return (
         <Center spacing={4}
             w={'full'}
@@ -113,6 +85,7 @@ export default function EmployeeCards() {
                         }}>
                         Loan
                     </Button>
+                    <UploadAndDisplayImage />
                 </Stack>
             </Box>
         </Center>

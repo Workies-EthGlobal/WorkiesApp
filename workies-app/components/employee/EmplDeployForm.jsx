@@ -4,20 +4,16 @@ import {
     Flex,
     Box,
     Button,
-    VStack,
     FormControl,
     FormLabel,
     Input,
     InputGroup,
     InputLeftElement,
-    Textarea,
     SimpleGrid,
-    Form,
     Heading,
 } from "@chakra-ui/react";
 import CompanyManagerFactory from "../../pages/abis/CompanyManagerFactory.json";
 import { useWeb3React } from "@web3-react/core";
-import { ethers } from "ethers";
 import { Contract } from "ethers";
 
 export default function EmplDeployForm() {
@@ -34,10 +30,10 @@ export default function EmplDeployForm() {
 
     var contract = active
         ? new Contract(
-              smartContractAddress,
-              CompanyManagerFactory.abi,
-              library.getSigner(account)
-          )
+            smartContractAddress,
+            CompanyManagerFactory.abi,
+            library.getSigner(account)
+        )
         : "";
 
     const callContract = (event) => {

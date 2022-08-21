@@ -1,26 +1,28 @@
-import { useEffect, useState } from "react";
 import {
     Box,
     Flex,
+    Text,
     HStack,
-    IconButton,
     Img,
     Button,
     Menu,
     MenuButton,
-    useDisclosure,
     useColorModeValue,
-    Stack,
-    Text,
     Avatar,
 } from "@chakra-ui/react";
+import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
 import NavLink from "./NavLink";
 import NextLink from "next/link";
-import { HamburgerIcon, CloseIcon, Search2Icon } from "@chakra-ui/icons";
+import { truncateAddress } from "./web3/utils";
+import { useWeb3React } from "@web3-react/core";
 
 import WCMenuList from "./web3/WCMenuList";
 
+
 export default function MainNavigation() {
+
+    const { account, active } = useWeb3React()
+
     return (
         <Box
             bg={useColorModeValue("rgba(12,10,29,1.0)", "blue.900")}
@@ -47,7 +49,10 @@ export default function MainNavigation() {
                     <NavLink />
                 </HStack>
 
+
                 <Flex alignItems={"center"}>
+                    {active ? <CheckCircleIcon w={3} h={3} color='green.500' /> : <WarningIcon w={3} h={3} color='red.500' />}
+
                     <Menu>
                         <MenuButton
                             as={Button}
@@ -56,6 +61,10 @@ export default function MainNavigation() {
                             cursor={"pointer"}
                             minW={0}
                         >
+                            <Text>
+
+                                {truncateAddress(account)}
+                            </Text>
                             <Avatar
                                 size={"sm"}
                                 src={

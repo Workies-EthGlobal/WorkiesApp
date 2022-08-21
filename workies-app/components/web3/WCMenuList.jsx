@@ -12,14 +12,18 @@ import { connectors } from "./connectors";
 export default function WCMenuList() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const {
+        account,
         activate,
         deactivate,
+        active
     } = useWeb3React();
+
     const [provider, setProvider] = useState(false);
 
     const refreshState = () => {
-        setProvider(false)
+        window.localStorage.setItem("provider", undefined);
     };
+
 
     const disconnect = () => {
         refreshState();
@@ -27,16 +31,20 @@ export default function WCMenuList() {
     };
 
     useEffect(() => {
-        setProvider(true);
+        const provider = window.localStorage.getItem("provider");
         if (provider) activate(connectors[provider]);
     }, []);
 
     return (
 
         <MenuList>
-            <MenuItem onClick={onOpen}>
-                Wallet Connect
-            </MenuItem>
+
+            {!active ? (
+                <MenuItem onClick={onOpen}>Connect Wallet</MenuItem>
+            ) : (
+                <MenuItem onClick={disconnect}>Disconnect</MenuItem>
+            )}
+
             <MenuItem>Link 2</MenuItem>
             <MenuDivider />
             <MenuItem>Link 3</MenuItem>

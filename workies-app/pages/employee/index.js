@@ -23,12 +23,12 @@ export default function employee() {
                 </Box>
             </VStack>
 
-            <HStack p={0} align="top">
+            <HStack>
                 <EmplDeployForm />
-                <EmployeeListView data={dummyData}/>
+                <EmployeeListView />
             </HStack>
 
-            <LoanHistoryView data={dummyData}/>
+            <LoanHistoryView data={dummyData} />
         </VStack>
     );
 }

@@ -10,6 +10,7 @@ import {
     Button,
     Text
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { Image } from "@chakra-ui/react";
 import { useWeb3React } from "@web3-react/core";
 import { connectors } from "./connectors";

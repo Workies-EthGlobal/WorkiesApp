@@ -12,8 +12,7 @@ import {
     SimpleGrid,
     Heading,
 } from "@chakra-ui/react";
-
-import LoanFactory from "../../pages/abis/CompanyManagerFactory.json";
+import LoanFactory from "../../artifacts/contracts/LoanFactory.sol/LoanFactory.json";
 import CompanyManagerFactory from "../../artifacts/contracts/CompanyManagerFactory.sol/CompanyManagerFactory.json";
 
 import { useWeb3React } from "@web3-react/core";

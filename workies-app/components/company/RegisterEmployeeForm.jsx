@@ -25,6 +25,7 @@ import CompanyManager from "../../pages/abis/CompanyManager.json";
 
 export default function RegisterEmployee() {
 
+    const [selectedImage, setSelectedImage] = useState("");
     const [employeeName, setEmployeeName] = useState("");
     const [employeeSalary, setEmployeeSalary] = useState("");
     const { library, account, active } = useWeb3React();
@@ -72,20 +73,42 @@ export default function RegisterEmployee() {
                                 <FormLabel>Employee photo</FormLabel>
                                 <Stack direction={['column', 'row']} spacing={6}>
                                     <Center>
-                                        <Avatar size="xl" src="/assets/favicon.ico">
-                                            <AvatarBadge
-                                                as={IconButton}
-                                                size="sm"
-                                                rounded="full"
-                                                top="-10px"
-                                                colorScheme="red"
-                                                aria-label="remove Image"
-                                                icon={<SmallCloseIcon />}
-                                            />
-                                        </Avatar>
+                                        {selectedImage ?
+                                            (
+                                                <Avatar size="xl" src={URL.createObjectURL(selectedImage)}>
+                                                    <AvatarBadge
+                                                        as={IconButton}
+                                                        size="sm"
+                                                        rounded="full"
+                                                        top="-10px"
+                                                        colorScheme="red"
+                                                        aria-label="remove Image"
+                                                        icon={<SmallCloseIcon onClick={() => setSelectedImage(null)} />}
+                                                    />
+                                                </Avatar>
+                                            ) : (
+                                                <Avatar size="xl" src={"../../public/assets/favicon.ico"} >
+                                                    <AvatarBadge
+                                                        as={IconButton}
+                                                        size="sm"
+                                                        rounded="full"
+                                                        top="-10px"
+                                                        colorScheme="red"
+                                                        aria-label="remove Image"
+                                                        icon={<SmallCloseIcon onClick={() => setSelectedImage(null)} />}
+                                                    />
+                                                </Avatar>
+                                            )
+                                        }
+
                                     </Center>
                                     <Center w="full">
-                                        <Button w="full">Change Photo</Button>
+                                        <Input type="file"
+                                            name="myImage"
+                                            onChange={(event) => {
+                                                console.log(event.target.files[0]);
+                                                setSelectedImage(event.target.files[0]);
+                                            }} />
                                     </Center>
                                 </Stack>
                             </FormControl>
@@ -130,7 +153,7 @@ export default function RegisterEmployee() {
                         </Stack>
                     }
                 </Stack>
-            </Flex>
-        </form>
+            </Flex >
+        </form >
     );
 }

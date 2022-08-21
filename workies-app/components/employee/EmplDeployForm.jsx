@@ -38,60 +38,40 @@ export default function EmplDeployForm() {
           )
         : "";
 
-    async function test() {
-        console.log(chainId);
-
-        // const prov = new ethers.providers.Web3Provider(window.ethereum);
-        const deployer  = library.getSigner(account);
-        const etherProv = deployer.provider;
-        // const prov = ethers.providers.InfuraProvider("mumbai", "https://polygon-mumbai.infura.io/v3/786671decfea4241a9e3c811abcdf3fe");
-        
-        const custm = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.infura.io/v3/786671decfea4241a9e3c811abcdf3fe");
-
-        console.log("bef");
-        // console.log(prov);
+    async function asyncCall() {
+        const custm = new ethers.providers.JsonRpcProvider(
+            "https://polygon-mumbai.infura.io/v3/786671decfea4241a9e3c811abcdf3fe"
+        );
 
         const sf = await Framework.create({
-            chainId: 80001,
-            provider: custm
+            chainId: chainId,
+            provider: new ethers.providers.Web3Provider(window.ethereum),
         });
 
-        console.log(sf);
+        const daix = await sf.loadSuperToken("fDAIx");
+
+        contract.functions
+            .createNewLoan(
+                ethers.utils.parseEther(borrowAmount),
+                dInterestRate,
+                loanDuration,
+                "0xF3Bdd4Af08a606895A4bfF479A1aF0fb6E59BA04", //employer address
+                account,
+                daix.address,
+                sf.settings.config.hostAddress
+            )
+            .then((result) => {
+                console.log(result);
+            });
+
         console.log("aft");
     }
 
     const callContract = (event) => {
         event.preventDefault();
-        test();
 
         if (contract != "") {
-            // contract.functions.createCompanyManagerContract("Workies", "WRK");
-            // contract.functions
-            //     .getCompanyManagerContract(0)
-            //     .then((result) => {
-            //         console.log(result);
-            //     });
-            //const provider = ethers.getDefaultProvider();
-            // Framework.create({
-            //     chainId: chainId,
-            //     provider: library.provider,
-            // }).then((sf) => {
-            //     sf.loadSuperToken("fDAIx").then((daix) => {
-            //         contract.functions
-            //             .createNewLoan(
-            //                 ethers.utils.parseEther(borrowAmount),
-            //                 dInterestRate,
-            //                 loanDuration,
-            //                 "0xF3Bdd4Af08a606895A4bfF479A1aF0fb6E59BA04", //employer address
-            //                 account,
-            //                 daix.address,
-            //                 sf.settings.config.hostAddress
-            //             )
-            //             .then((result) => {
-            //                 console.log(result);
-            //             });
-            //     });
-            // });
+            asyncCall();
         }
     };
 

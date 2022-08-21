@@ -15,8 +15,8 @@ export default function LoanHistoryView(props) {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {props.data.map((lender) => (
-                            <EmplListItem lender={lender} />
+                        {props.data.map((lender, idx) => (
+                            <EmplListItem key={idx} lender={lender} />
                         ))}
                     </Tbody>
                 </Table>

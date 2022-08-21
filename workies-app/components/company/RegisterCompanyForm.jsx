@@ -7,7 +7,6 @@ import {
     Heading,
     Input,
     Stack,
-    useColorModeValue,
     Avatar,
     AvatarBadge,
     IconButton,
@@ -49,13 +48,13 @@ export default function RegisterCompany() {
                 minH={'100vh'}
                 align={'center'}
                 justify={'center'}
-                bg={useColorModeValue('gray.50', 'gray.800')}>
+                bg={'gray.50'}>
                 {!active ? <NotConnected /> :
                     <Stack
                         spacing={4}
                         w={'full'}
                         maxW={'md'}
-                        bg={useColorModeValue('white', 'gray.700')}
+                        bg={'white'}
                         rounded={'xl'}
                         boxShadow={'lg'}
                         p={6}

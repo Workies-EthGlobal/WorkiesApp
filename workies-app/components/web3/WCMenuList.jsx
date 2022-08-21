@@ -32,7 +32,7 @@ export default function WCMenuList() {
     useEffect(() => {
         const provider = window.localStorage.getItem("provider");
         if (provider) activate(connectors[provider]);
-    }, []);
+    }, [activate]);
 
     return (
 

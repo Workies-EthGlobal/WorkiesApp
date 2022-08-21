@@ -4,7 +4,6 @@ import { Web3Storage, getFilesFromPath } from 'web3.storage'
 
 async function main() {
     const args = minimist(process.argv.slice(2))
-    const token = args.token
 
     if (!token) {
         return console.error('A token is needed. You can create one on https://web3.storage')

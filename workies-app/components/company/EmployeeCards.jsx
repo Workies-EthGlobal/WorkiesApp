@@ -14,7 +14,7 @@ import { getNFTSmartContractAddress, getEmployeeList } from "../web3/companyActi
 import { useWeb3React } from "@web3-react/core";
 import CompanyManagerFactory from "../../artifacts/contracts/CompanyManagerFactory.sol/CompanyManagerFactory.json";
 import { Contract } from "ethers";
-import UploadAndDisplayImage from './UploadAndDisplayImage';
+import { Web3Storage } from 'web3.storage';
 
 
 export default function EmployeeCards() {

@@ -12,7 +12,7 @@ import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
 import { useState } from "react";
 import { getNFTSmartContractAddress, getEmployeeList } from "../web3/companyActions";
 import { useWeb3React } from "@web3-react/core";
-import CompanyManagerFactory from "../../pages/abis/CompanyManagerFactory.json";
+import CompanyManagerFactory from "../../artifacts/contracts/CompanyManagerFactory.sol/CompanyManagerFactory.json";
 import { Contract } from "ethers";
 
 

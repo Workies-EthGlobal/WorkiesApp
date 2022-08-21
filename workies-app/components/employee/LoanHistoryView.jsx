@@ -3,7 +3,7 @@ import EmplListItem from "./EmplListItem";
 
 export default function LoanHistoryView(props) {
     return (
-        <Box p={5} centerContent>
+        <Box p={5}>
             <Heading>Loan History</Heading>
             <Box overflowY="auto" maxHeight="1000px" minW={"1000"}>
                 <Table variant="striped" colorScheme="facebook">

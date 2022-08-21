@@ -20,7 +20,7 @@ import { useWeb3React } from "@web3-react/core";
 import { Framework } from "@superfluid-finance/sdk-core";
 import { Contract, ethers } from "ethers";
 
-export default function EmplDeployForm() {
+export default function EmplDeployForm(props) {
     //const [activeLoans, setActiveLoans] = useState([]);
     const [borrowAmount, setBorrowAmount] = useState("");
     const [dInterestRate, setdInterestRate] = useState("");
@@ -65,7 +65,7 @@ export default function EmplDeployForm() {
             .then(
                 (result) => {
                     result.wait(1).then(() => {
-                        
+                        props.runSetActiveLoans();
                     });
                 },
                 (error) => {

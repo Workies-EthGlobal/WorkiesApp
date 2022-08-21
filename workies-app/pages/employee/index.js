@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Text, VStack, Flex, HStack, Heading } from "@chakra-ui/react";
 import { Contract } from "ethers";
 import { useWeb3React } from "@web3-react/core";
 
+import LoanFactory from "../../artifacts/contracts/LoanFactory.sol/LoanFactory.json";
 import EmploymentLoan from "../../artifacts/contracts/EmploymentLoan.sol/EmploymentLoan.json";
 import EmployeeListView from "../../components/employee/EmployeeListView";
 import EmplDeployForm from "../../components/employee/EmplDeployForm";
@@ -13,25 +14,40 @@ export default function employee() {
     const { library, account, active, chainId, connector } = useWeb3React();
     const [activeLoans, setActiveLoans] = useState([]);
 
-    function updateActiveLoans() {
+    useEffect(() => {
+        updateActiveLoans();
+    }, [active ]);
+
+    async function updateActiveLoans() {
+        console.log("updating active loans");
         var loanSC = active
             ? new Contract(
                   factoryContractAddress,
-                  EmploymentLoan.abi,
+                  LoanFactory.abi,
                   library.getSigner(account)
               )
             : "";
-
+        debugger;
         if (loanSC != "") {
-            for (id = 1; id <= loanSC.loanId(); id++) {
-                loan = loanSC.idToLoan(id);
-                if (loan.borrower() == _address) {
-                    total++;
-                    if (loan.loanOpen()) {
-                        opened++;
-                        setActiveLoans([...loan]);
-                    }
-                }
+            const l_id = await loanSC.functions.loanId();
+            console.log(l_id)
+            for (var id = 1; id <= l_id; id++) {
+                const loanAddr = await loanSC.functions.idToLoan(id);
+                console.log(loanAddr)
+                const loanContract = new Contract(
+                    loanAddr[0],
+                    EmploymentLoan.abi,
+                    library.getSigner(account)
+                );
+                console.log(loanContract)
+                const tmp = await loanContract.functions.borrower();
+
+                
+                    const loanOp = await loanContract.functions.loanOpen();
+                    
+                        setActiveLoans([...activeLoans, loanContract]);
+                    
+                
             }
         }
     }
@@ -57,8 +73,8 @@ export default function employee() {
             </VStack>
 
             <HStack>
-                <EmplDeployForm />
-                <EmployeeListView data={dummyData} />
+                <EmplDeployForm runSetActiveLoans={updateActiveLoans} />
+                <EmployeeListView data={activeLoans} />
             </HStack>
 
             <LoanHistoryView data={dummyData} />

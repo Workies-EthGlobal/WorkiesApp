@@ -16,7 +16,9 @@ export default function employee() {
 
     useEffect(() => {
         updateActiveLoans();
+        setActiveLoans(activeLoans)
     }, [active ]);
+
 
     async function updateActiveLoans() {
         console.log("updating active loans");
@@ -27,7 +29,6 @@ export default function employee() {
                   library.getSigner(account)
               )
             : "";
-        debugger;
         if (loanSC != "") {
             const l_id = await loanSC.functions.loanId();
             console.log(l_id)
@@ -41,13 +42,8 @@ export default function employee() {
                 );
                 console.log(loanContract)
                 const tmp = await loanContract.functions.borrower();
-
-                
-                    const loanOp = await loanContract.functions.loanOpen();
-                    
-                        setActiveLoans([...activeLoans, loanContract]);
-                    
-                
+                const loanOp = await loanContract.functions.loanOpen();
+                setActiveLoans(current => [...current, loanContract])
             }
         }
     }

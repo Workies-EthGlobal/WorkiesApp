@@ -7,7 +7,6 @@ import {
     Heading,
     Input,
     Stack,
-    useColorModeValue,
     Avatar,
     AvatarBadge,
     IconButton,
@@ -19,7 +18,7 @@ import NotConnected from "../NotConnected";
 import { createCompanyManager } from "../web3/companyActions";
 import { Contract } from "ethers";
 const smartContractAddress = "0xad0448749ac74ad9c3f873abee181c7080dca09f";
-import CompanyManagerFactory from "../../pages/abis/CompanyManagerFactory.json";
+import CompanyManagerFactory from "../../artifacts/contracts/CompanyManagerFactory.sol/CompanyManagerFactory.json";
 
 
 export default function RegisterCompany() {
@@ -49,13 +48,13 @@ export default function RegisterCompany() {
                 minH={'100vh'}
                 align={'center'}
                 justify={'center'}
-                bg={useColorModeValue('gray.50', 'gray.800')}>
+                bg={'gray.50'}>
                 {!active ? <NotConnected /> :
                     <Stack
                         spacing={4}
                         w={'full'}
                         maxW={'md'}
-                        bg={useColorModeValue('white', 'gray.700')}
+                        bg={'white'}
                         rounded={'xl'}
                         boxShadow={'lg'}
                         p={6}

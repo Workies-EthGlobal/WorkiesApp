@@ -1,4 +1,3 @@
-import { Box, Text, VStack, Flex, HStack } from "@chakra-ui/react";
 
 import RegisterEmployee from "../../components/company/RegisterEmployeeForm";
 

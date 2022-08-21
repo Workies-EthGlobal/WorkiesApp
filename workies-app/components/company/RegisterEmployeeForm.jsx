@@ -23,9 +23,6 @@ const smartContractAddress = "0xad0448749ac74ad9c3f873abee181c7080dca09f";
 import CompanyManager from "../../pages/abis/CompanyManager.json";
 
 
-
-
-
 export default function RegisterEmployee() {
 
     const [employeeName, setEmployeeName] = useState("");

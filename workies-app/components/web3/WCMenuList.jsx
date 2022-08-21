@@ -12,7 +12,6 @@ import { connectors } from "./connectors";
 export default function WCMenuList() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const {
-        account,
         activate,
         deactivate,
         active

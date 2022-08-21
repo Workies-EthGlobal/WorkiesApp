@@ -12,8 +12,10 @@ import {
     SimpleGrid,
     Heading,
 } from "@chakra-ui/react";
-import CompanyManagerFactory from "../../pages/abis/CompanyManagerFactory.json";
+
 import LoanFactory from "../../pages/abis/CompanyManagerFactory.json";
+import CompanyManagerFactory from "../../artifacts/contracts/CompanyManagerFactory.sol/CompanyManagerFactory.json";
+
 import { useWeb3React } from "@web3-react/core";
 import { Framework } from "@superfluid-finance/sdk-core";
 import { Contract, ethers } from "ethers";

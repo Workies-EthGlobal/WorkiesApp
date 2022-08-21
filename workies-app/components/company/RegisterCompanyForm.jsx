@@ -16,7 +16,7 @@ import {
 import { SmallCloseIcon } from '@chakra-ui/icons';
 import { useWeb3React } from '@web3-react/core';
 import NotConnected from "../NotConnected";
-import { createEmployee } from "../web3/companyActions";
+import { createCompanyManager } from "../web3/companyActions";
 import { Contract } from "ethers";
 const smartContractAddress = "0xad0448749ac74ad9c3f873abee181c7080dca09f";
 import CompanyManagerFactory from "../../pages/abis/CompanyManagerFactory.json";
@@ -38,7 +38,7 @@ export default function RegisterCompany() {
     const handleSubmit = event => {
         event.preventDefault();
         console.log(companyName, companyToken);
-        createEmployee(facotryContract, account, companyName, companyToken);
+        createCompanyManager(facotryContract, account, companyName, companyToken);
 
     }
 

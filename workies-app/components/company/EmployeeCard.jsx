@@ -10,10 +10,17 @@ import {
     Badge,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { CheckCircleIcon, WarningIcon } from '@chakra-ui/icons';
 
 export default function EmployeeCard() {
     return (
-        <Center py={6}>
+        <Center spacing={4}
+            w={'full'}
+            maxW={'md'}
+            bg={useColorModeValue('white', 'gray.700')}
+            rounded={'xl'}
+            p={6}
+            my={12}>
             <Box
                 maxW={'320px'}
                 w={'full'}
@@ -43,56 +50,22 @@ export default function EmployeeCard() {
                     }}
                 />
                 <Heading fontSize={'2xl'} fontFamily={'body'}>
-                    Lindsey James
+                    Employee Name
                 </Heading>
                 <Text fontWeight={600} color={'gray.500'} mb={4}>
-                    @lindsey_jam3s
+                    loan: {true ? <CheckCircleIcon w={3} h={3} color='green.500' /> : <WarningIcon w={3} h={3} color='red.500' />}
                 </Text>
-                <Text
-                    textAlign={'center'}
-                    color={useColorModeValue('gray.700', 'gray.400')}
-                    px={3}>
-                    Actress, musician, songwriter and artist. PM for work inquires or{' '}
-                    <Link href={'#'} color={'blue.400'}>
-                        #tag
-                    </Link>{' '}
-                    me in your posts
+                <Text fontWeight={600} color={'gray.500'} mb={4}>
+                    credit score: {true ? <CheckCircleIcon w={3} h={3} color='green.500' /> : <WarningIcon w={3} h={3} color='red.500' />}
                 </Text>
-
-                <Stack align={'center'} justify={'center'} direction={'row'} mt={6}>
-                    <Badge
-                        px={2}
-                        py={1}
-                        bg={useColorModeValue('gray.50', 'gray.800')}
-                        fontWeight={'400'}>
-                        #art
-                    </Badge>
-                    <Badge
-                        px={2}
-                        py={1}
-                        bg={useColorModeValue('gray.50', 'gray.800')}
-                        fontWeight={'400'}>
-                        #photography
-                    </Badge>
-                    <Badge
-                        px={2}
-                        py={1}
-                        bg={useColorModeValue('gray.50', 'gray.800')}
-                        fontWeight={'400'}>
-                        #music
-                    </Badge>
-                </Stack>
+                <Text>
+                    Incoming Monthly Salary
+                </Text>
+                <Text>
+                    Pending Loan
+                </Text>
 
                 <Stack mt={8} direction={'row'} spacing={4}>
-                    <Button
-                        flex={1}
-                        fontSize={'sm'}
-                        rounded={'full'}
-                        _focus={{
-                            bg: 'gray.200',
-                        }}>
-                        Message
-                    </Button>
                     <Button
                         flex={1}
                         fontSize={'sm'}
@@ -108,10 +81,11 @@ export default function EmployeeCard() {
                         _focus={{
                             bg: 'blue.500',
                         }}>
-                        Follow
+                        Loan
                     </Button>
                 </Stack>
             </Box>
         </Center>
+
     );
 }

@@ -1,4 +1,4 @@
-export const createEmployee = (contract, account, companyName, companyToken) => {
+export const createCompanyManager = (contract, account, companyName, companyToken) => {
     if (!account) return false
     if (contract != "") {
         console.log("called contract");
@@ -15,13 +15,26 @@ export const createEmployee = (contract, account, companyName, companyToken) => 
 }
 
 
-export const getNFTSmartContractAddress = (contract, NFTAddress) => {
+export const createEmployee = (contract, account, employeeName, employeeSalary) => {
+    if (!account) return false
+    if (contract != "") {
+        console.log("called contract");
+        console.log(contract);
+        return contract.functions.safeMint(employeeName, employeeSalary);
+    }
+
+}
+
+
+
+
+export const getNFTSmartContractAddress = (contract, ownerAddress) => {
     if (!account) return false
     if (contract != "") {
         console.log("called getCompanyManagerContractByOwner");
         console.log(contract);
 
-        return contract.functions.safeMint(NFTAddress);
+        return contract.functions.safeMint(ownerAddress);
     }
 
 }

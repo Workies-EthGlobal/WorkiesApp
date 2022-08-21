@@ -14,12 +14,10 @@ import {
 import EmplListItem from "./EmplListItem";
 
 export default function EmployeeListView(props) {
-
     return (
         <Container overflow="hidden" centerContent>
             <Heading>Active Loans</Heading>
             <Box overflowY="auto" maxHeight="1000px">
-
                 <Table variant="striped" colorScheme="facebook">
                     <Thead position="sticky" bgColor="grey">
                         <Tr>
@@ -29,7 +27,7 @@ export default function EmployeeListView(props) {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {props.data.map((lender, idx) => (
+                        { props.data.map((lender, idx) => (
                             <EmplListItem key={idx} lender={lender} />
                         ))}
                     </Tbody>

@@ -12,6 +12,7 @@ import {
     SimpleGrid,
     Heading,
 } from "@chakra-ui/react";
+
 import LoanFactory from "../../artifacts/contracts/LoanFactory.sol/LoanFactory.json";
 import CompanyManagerFactory from "../../artifacts/contracts/CompanyManagerFactory.sol/CompanyManagerFactory.json";
 
@@ -20,19 +21,20 @@ import { Framework } from "@superfluid-finance/sdk-core";
 import { Contract, ethers } from "ethers";
 
 export default function EmplDeployForm() {
+    //const [activeLoans, setActiveLoans] = useState([]);
     const [borrowAmount, setBorrowAmount] = useState("");
     const [dInterestRate, setdInterestRate] = useState("");
     const [loanDuration, setLoanDuration] = useState("");
     const employeeAddress = ""; //Get from web3 context
     const tokenToBorrow = "";
     const superFluidHostAddress = "";
-    const smartContractAddress = "0xA124387236E773435fa0f5F6FF2d54E3053D4c50";
+    const factoryContractAddress = "0xA124387236E773435fa0f5F6FF2d54E3053D4c50";
 
     const { library, account, active, chainId, connector } = useWeb3React();
 
     var contract = active
         ? new Contract(
-              smartContractAddress,
+              factoryContractAddress,
               LoanFactory.abi,
               library.getSigner(account)
           )
@@ -60,11 +62,16 @@ export default function EmplDeployForm() {
                 daix.address,
                 sf.settings.config.hostAddress
             )
-            .then((result) => {
-                console.log(result);
-            });
-
-        console.log("aft");
+            .then(
+                (result) => {
+                    result.wait(1).then(() => {
+                        
+                    });
+                },
+                (error) => {
+                    console.log("Error: " + error);
+                }
+            );
     }
 
     const callContract = (event) => {

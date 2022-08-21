@@ -15,13 +15,17 @@ export const createEmployee = (contract, account, companyName, companyToken) => 
 }
 
 
-export const getNFTSmartContractAddress = (contract, account) => {
+export const getNFTSmartContractAddress = (contract, NFTAddress) => {
     if (!account) return false
     if (contract != "") {
         console.log("called getCompanyManagerContractByOwner");
         console.log(contract);
 
-        return contract.functions.getCompanyManagerContractByOwner(account);
+        return contract.functions.safeMint(NFTAddress);
     }
+
+}
+
+export const getEmployeeList = (contract, NFTaddress) => {
 
 }

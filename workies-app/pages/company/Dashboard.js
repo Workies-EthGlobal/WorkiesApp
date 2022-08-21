@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { getNFTSmartContractAddress } from "../../components/web3/companyActions";
-import { Box, Button, Text } from "@chakra-ui/react";
+import { getNFTSmartContractAddress, getEmployeeList } from "../../components/web3/companyActions";
+import { Box, Button, Text, Flex } from "@chakra-ui/react";
 import { useWeb3React } from "@web3-react/core";
 import CompanyManagerFactory from "../../pages/abis/CompanyManagerFactory.json";
 import { Contract } from "ethers";
+import EmployeeCard from "../../components/company/EmployeeCard";
 
 
 export default function dashboard() {
-    const [companyList, setCommpanyList] = useState("");
+    const [NFTContractAddress, setNFTContractAddress] = useState("");
+    const [employeeList, setEmployeeList] = useState([]);
 
     const smartContractAddress = "0xad0448749ac74ad9c3f873abee181c7080dca09f";
 
@@ -26,22 +28,24 @@ export default function dashboard() {
         event.preventDefault();
         console.log(factoryContract, account);
         getNFTSmartContractAddress(factoryContract, account).then((address) => {
-            setCommpanyList(address);
+            setNFTContractAddress(address);
         })
-        console.log(companyList);
+        console.log(NFTContractAddress);
+
+        getEmployeeList(employerContract, NFTContractAddress).then((employeeList) => setEmployeeList(employeeList))
 
     }
 
+
+    const exampleList = [1, 1, 1]
     return (
-        <Box>
-            <Button onClick={handleConnect}>
 
-            </Button>
-            <Text>
-                {companyList}
+        <Flex>
+            {
+                exampleList.map((employee) => <EmployeeCard />)
+            }
 
-            </Text>
-        </Box>
 
+        </Flex>
     );
 }

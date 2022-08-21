@@ -18,7 +18,7 @@ import NotConnected from "../NotConnected";
 import { createCompanyManager } from "../web3/companyActions";
 import { Contract } from "ethers";
 const smartContractAddress = "0xad0448749ac74ad9c3f873abee181c7080dca09f";
-import CompanyManagerFactory from "../../pages/abis/CompanyManagerFactory.json";
+import CompanyManagerFactory from "../../artifacts/contracts/CompanyManagerFactory.sol/CompanyManagerFactory.json";
 
 
 export default function RegisterCompany() {

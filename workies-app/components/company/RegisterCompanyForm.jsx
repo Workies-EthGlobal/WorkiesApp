@@ -16,17 +16,29 @@ import {
 import { SmallCloseIcon } from '@chakra-ui/icons';
 import { useWeb3React } from '@web3-react/core';
 import NotConnected from "../NotConnected";
+import { createCompanyManager } from "../web3/companyActions";
+import { Contract } from "ethers";
+const smartContractAddress = "0xad0448749ac74ad9c3f873abee181c7080dca09f";
+import CompanyManagerFactory from "../../pages/abis/CompanyManagerFactory.json";
+
 
 export default function RegisterCompany() {
 
     const [companyName, setCompanyName] = useState("");
     const [companyToken, setCompanyToken] = useState("");
+    const { library, account, active } = useWeb3React();
 
-    const { active } = useWeb3React();
-
+    var facotryContract = active
+        ? new Contract(
+            smartContractAddress,
+            CompanyManagerFactory.abi,
+            library.getSigner(account)
+        )
+        : "";
     const handleSubmit = event => {
         event.preventDefault();
         console.log(companyName, companyToken);
+        createCompanyManager(facotryContract, account, companyName, companyToken);
 
     }
 

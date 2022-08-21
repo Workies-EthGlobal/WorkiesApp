@@ -17,6 +17,12 @@ import {
 import NotConnected from "../NotConnected";
 import { SmallCloseIcon } from '@chakra-ui/icons';
 import { useWeb3React } from "@web3-react/core";
+import { createEmployee } from "../web3/companyActions";
+import { Contract } from "ethers";
+const smartContractAddress = "0xad0448749ac74ad9c3f873abee181c7080dca09f";
+import CompanyManager from "../../pages/abis/CompanyManager.json";
+
+
 
 
 
@@ -24,12 +30,21 @@ export default function RegisterEmployee() {
 
     const [employeeName, setEmployeeName] = useState("");
     const [employeeSalary, setEmployeeSalary] = useState("");
+    const { library, account, active } = useWeb3React();
 
-    const { active } = useWeb3React();
+    var contract = active
+        ? new Contract(
+            smartContractAddress,
+            CompanyManager.abi,
+            library.getSigner(account)
+        )
+        : "";
 
     const handleSubmit = event => {
         event.preventDefault();
         console.log(employeeName, employeeSalary);
+        createEmployee(contract, account, employeeName, employeeSalary);
+
     };
 
     return (

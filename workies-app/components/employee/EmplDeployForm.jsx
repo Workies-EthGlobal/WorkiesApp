@@ -4,15 +4,12 @@ import {
     Flex,
     Box,
     Button,
-    VStack,
     FormControl,
     FormLabel,
     Input,
     InputGroup,
     InputLeftElement,
-    Textarea,
     SimpleGrid,
-    Form,
     Heading,
 } from "@chakra-ui/react";
 import CompanyManagerFactory from "../../pages/abis/CompanyManagerFactory.json";

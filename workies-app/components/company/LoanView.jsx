@@ -1,6 +1,6 @@
 
 import { Box, Container, Heading, Table, Thead, Tr, Th, Tbody } from "@chakra-ui/react";
-import EmplListItem from "../employee/EmplListItem";
+import CompListItem  from "../employee/companyListitem";
 
 export function LoanView(props){
 
@@ -18,7 +18,7 @@ export function LoanView(props){
                     </Thead>
                     <Tbody>
                         {props.data.map((lender, idx) => (
-                            <EmplListItem lender={lender} key={idx}/>
+                            <CompListItem lender={lender} key={idx}/>
                         ))}
                     </Tbody>
                 </Table>

@@ -47,7 +47,7 @@ export default function RegisterEmployee() {
     const handleSubmit = event => {
         event.preventDefault();
         console.log(employeeName, employeeSalary);
-        createEmployee(contract, account, employeeName, employeeSalary);
+        createEmployee(contract, account, employeeName, employeeSalary).then(console.log(res));
 
 
         if (selectedImage != "") {

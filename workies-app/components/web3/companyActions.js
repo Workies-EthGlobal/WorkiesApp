@@ -25,6 +25,16 @@ export const createEmployee = (contract, account, employeeName, employeeSalary) 
 
 }
 
+export const companyIsLoggedIn = (contract, account) => {
+    if (!account) return false
+    if (contract != "") {
+        console.log("called companyISLoggedIn");
+        console.log(contract);
+        contract.functions.getCompanyManagerContractByOwner(account).then(res)
+
+    }
+}
+
 
 
 

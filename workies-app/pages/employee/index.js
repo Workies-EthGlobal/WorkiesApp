@@ -25,7 +25,7 @@ export default function employee() {
 
             <HStack>
                 <EmplDeployForm />
-                <EmployeeListView />
+                <EmployeeListView data={dummyData} />
             </HStack>
 
             <LoanHistoryView data={dummyData} />

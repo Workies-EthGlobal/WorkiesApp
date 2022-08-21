@@ -13,6 +13,7 @@ import {
     Textarea,
     SimpleGrid,
     Form,
+    Heading,
 } from "@chakra-ui/react";
 import CompanyManagerFactory from "../../pages/abis/CompanyManagerFactory.json";
 import { useWeb3React } from "@web3-react/core";

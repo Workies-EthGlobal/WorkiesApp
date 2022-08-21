@@ -18,8 +18,12 @@ import {
     InputLeftElement,
     Textarea,
     SimpleGrid,
-    Form
+    Form,
 } from "@chakra-ui/react";
+import CompanyManagerFactory from "../../pages/abis/CompanyManagerFactory.json";
+import { useWeb3React } from "@web3-react/core";
+import { ethers } from "ethers";
+import { Contract } from "ethers";
 
 export default function EmplDeployForm() {
     const [borrowAmount, setBorrowAmount] = useState("");
@@ -29,15 +33,38 @@ export default function EmplDeployForm() {
     const employeeAddress = ""; //Get from web3 context
     const tokenToBorrow = "";
     const superFluidHostAddress = "";
-    
-    const callContract = event => {
-        event.preventDefault();
-        
-        //Todo: call smart contract
-    }
-    
-    return (
+    const smartContractAddress = "0xb7713c47b22fdac7569eb9095955c6ad3b71879a";
 
+    const { library, account, active } = useWeb3React();
+
+    var contract = active
+        ? new Contract(
+              smartContractAddress,
+              CompanyManagerFactory.abi,
+              library.getSigner(account)
+          )
+        : "";
+
+    const callContract = (event) => {
+        event.preventDefault();
+
+        //Todo: call smart contract
+        console.log("entered function");
+        console.log(account);
+        if (contract != "") {
+            console.log("called contract");
+            console.log(contract);
+            // contract.functions.createCompanyManagerContract("Workies", "WRK");
+
+            contract.functions
+                .getCompanyManagerContract(0)
+                .then((result) => {
+                    console.log(result);
+                });
+        }
+    };
+
+    return (
         <Container maxW="full" centerContent overflow="hidden">
             <Heading>Request Loan</Heading>
             <Flex>
@@ -49,14 +76,21 @@ export default function EmplDeployForm() {
                         color="#0B0E3F"
                         p={5}
                     >
-                           <form onSubmit={callContract}>
+                        <form onSubmit={callContract}>
                             <SimpleGrid columns={1} spacing={2}>
-                                
                                 <FormControl id="name">
                                     <FormLabel>Borrow Amount</FormLabel>
                                     <InputGroup borderColor="#E0E1E7">
                                         <InputLeftElement pointerEvents="none" />
-                                        <Input type="text" size="md" onChange={event => setBorrowAmount(event.currentTarget.value)}/>
+                                        <Input
+                                            type="text"
+                                            size="md"
+                                            onChange={(event) =>
+                                                setBorrowAmount(
+                                                    event.currentTarget.value
+                                                )
+                                            }
+                                        />
                                     </InputGroup>
                                 </FormControl>
 
@@ -64,7 +98,15 @@ export default function EmplDeployForm() {
                                     <FormLabel>Desired Interest Rate</FormLabel>
                                     <InputGroup borderColor="#E0E1E7">
                                         <InputLeftElement pointerEvents="none" />
-                                        <Input type="text" size="md" onChange={event => setdInterestRate(event.currentTarget.value)}/>
+                                        <Input
+                                            type="text"
+                                            size="md"
+                                            onChange={(event) =>
+                                                setdInterestRate(
+                                                    event.currentTarget.value
+                                                )
+                                            }
+                                        />
                                     </InputGroup>
                                 </FormControl>
 
@@ -72,7 +114,15 @@ export default function EmplDeployForm() {
                                     <FormLabel>Loan Duration</FormLabel>
                                     <InputGroup borderColor="#E0E1E7">
                                         <InputLeftElement pointerEvents="none" />
-                                        <Input type="text" size="md" onChange={event => setLoanDuration(event.currentTarget.value)}/>
+                                        <Input
+                                            type="text"
+                                            size="md"
+                                            onChange={(event) =>
+                                                setLoanDuration(
+                                                    event.currentTarget.value
+                                                )
+                                            }
+                                        />
                                     </InputGroup>
                                 </FormControl>
 
@@ -87,10 +137,8 @@ export default function EmplDeployForm() {
                                         Submit
                                     </Button>
                                 </FormControl>
-                                
                             </SimpleGrid>
-
-                            </form>
+                        </form>
                     </Box>
                 </Box>
             </Flex>

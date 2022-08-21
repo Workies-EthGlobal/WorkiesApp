@@ -21,6 +21,7 @@
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "typechain": "^8.1.0",
     "web3-react": "^5.0.5"
   },
   "devDependencies": {

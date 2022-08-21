@@ -2,7 +2,7 @@ import { useState } from "react";
 import { getNFTSmartContractAddress, getEmployeeList } from "../../components/web3/companyActions";
 import { Box, Button, Text, Flex } from "@chakra-ui/react";
 import { useWeb3React } from "@web3-react/core";
-import CompanyManagerFactory from "../../pages/abis/CompanyManagerFactory.json";
+import CompanyManagerFactory from "../abis/CompanyManagerFactory.json";
 import { Contract } from "ethers";
 import EmployeeCard from "../../components/company/EmployeeCard";
 
